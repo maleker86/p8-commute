@@ -5,7 +5,8 @@ __lua__
 
 
 --globals
-lvl = 0
+lvl = 1
+round = 1
 phase = 1
 cmp_route={}
 plyr_route={}
@@ -23,12 +24,15 @@ function gd()
 	print("⬅️ is d,4") 
 end
 
---plr inpt norpt :)
+--plr inpt  
 function plyrrt()
+	
+	if (btnp()>0) then
+		print("player choice for slot "..phase.." is:")
+	end
 	
 	--up asgn
 	if(btnp(⬆️)) then 
-		print("player choice is:")
 		if phase==1 then
 			print("a")
 			plyr_route[1]="a"
@@ -41,7 +45,6 @@ function plyrrt()
 	
 	--rt asgn
 	if(btnp(➡️)) then 
-		print("player choice is:")
 		if phase==1 then
 			print("b")
 			plyr_route[1]="b"
@@ -54,7 +57,6 @@ function plyrrt()
 		
 	--dn asgn
 	if(btnp(⬇️)) then 
-		print("player choice is:")
 		if phase==1 then
 			print("c")
 			plyr_route[1]="c"
@@ -65,10 +67,8 @@ function plyrrt()
 		phs()
 	end
 	
-		
 	--lt asgn
 	if(btnp(⬅️)) then 
-		print("player choice is:")
 		if phase==1 then
 			print("d")
 			plyr_route[1]="d"
@@ -81,16 +81,15 @@ function plyrrt()
 	 
 end
 
-function phs()
-	print("slot is "..phase)
-	
+function phs()	
 		if (phase==2) then
 			phase = 1
+			print("if you are finished, press ❎")
 		else
 			phase = 2
 		end
 	
-	print("slot is now "..phase)
+	print("you are now choosing for slot "..phase)
 end
 
 --mk lvl rt
@@ -105,13 +104,12 @@ function mkrt()
 	rnd(ltlns)}
 	
 	foreach(cmp_route,print)
-	
 end
 
 function _update()
 	plyrrt()
 	
-	--print score
+	--end round/print score
 	if (btnp(❎)) then 
 		foreach(cmp_route,print)
 		foreach(plyr_route,print)
@@ -122,6 +120,11 @@ function _update()
 			print("you lose!")
 		end
 		
+		print("press 🅾️ to restart")
+	end
+	
+	if (btnp(🅾️)) then
+		_init()
 	end
 	
 end
