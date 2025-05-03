@@ -5,23 +5,22 @@ __lua__
 
 
 --globals
-lvl = 1
-round = 1
+lvl = 0
 phase = 1
 cmp_route={}
 plyr_route={}
 
 function _init()
 	cls()
-	mkrt()
+	mkcomprt()
 	gd()
 end
 
 function gd()
-	print("⬆️ is a,1")
-	print("➡️ is b,2")
-	print("⬇️ is c,3")
-	print("⬅️ is d,4") 
+	print("⬆️ is a,1,grn")
+	print("➡️ is b,2,red")
+	print("⬇️ is c,3,blue")
+	print("⬅️ is d,4,ylw") 
 end
 
 --plr inpt  
@@ -93,9 +92,9 @@ function phs()
 end
 
 --mk lvl rt
-function mkrt() 
+function mkcomprt() 
 	lvl = lvl+1
-	print("lvl "..lvl)
+	print("lvl: "..lvl)
 	
 	rtlns={"a","b","c","d"}
 	ltlns={"1","2","3","4"}
@@ -104,6 +103,12 @@ function mkrt()
 	rnd(ltlns)}
 	
 	foreach(cmp_route,print)
+	
+	if (cmp_route[1]=="a" or 
+	cmp_route[2]=="1") then
+		print("green",12,6)
+	end
+		
 end
 
 function _update()
@@ -128,8 +133,6 @@ function _update()
 	end
 	
 end
-
-
 -->8
 --todos
 
